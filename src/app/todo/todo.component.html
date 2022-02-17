@@ -1,0 +1,46 @@
+<div
+  class="container bg-primary p-4 rounded-1 mt-3 shadow-lg p-3 mb-5 bg-body rounded"
+>
+  <div class="jumbotron" style="padding: 45px 0px">
+    <h4 class="text-center">{{ principalTitle }}</h4>
+  </div>
+
+  <div class="input-group">
+    <!-- <label for="floatingInput" class="label-todo m-2">Digite sua tarefa:</label> -->
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Digite aqui sua tarefa"
+      aria-label="With textarea"
+      #itemTitle
+    />
+
+    <div class="input-group-addon hover-cursor" (click)="onAdd(itemTitle)">
+      <i class="fa fa-plus-circle fa-2x"></i>
+    </div>
+  </div>
+
+  <div style="margin: 5px 0px">
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let item of toDoListArray">
+        <span
+          class="hover-cursor"
+          [class.text-success]="item.isChecked"
+          (click)="alterCheck(item.$key, item.isChecked)"
+        >
+          <i
+            class="fa fa-lg"
+            [ngClass]="item.isChecked ? 'fa-check-circle-o' : 'fa-circle-thin'"
+          ></i>
+        </span>
+        {{ item.title }}
+        <span
+          class="hover-cursor text-danger pull-right"
+          (click)="onDelete(item.$key)"
+        >
+          <i class="fa fa-trash-o fa-lg"></i>
+        </span>
+      </li>
+    </ul>
+  </div>
+</div>
